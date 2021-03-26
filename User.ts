@@ -2,16 +2,24 @@ import { UseEffect } from "./useEffect";
 
 const User = () => {
   let name = 1;
-  // console.log(name);
 
-  // UseEffect(() => {
-  //   name = 2;
-  //   // console.log("useEffect inside user", name);
-  // });
-  // UseEffect(() => {
-  //   name = 4;
-  //   // console.log("useEffect inside user", name);
-  // });
+  const Click = () => {
+    console.log("const click");
+  };
+  const Click2 = () => `asdas`;
+
+  function flick() {
+    console.log("asdasd");
+  }
+
+  UseEffect(() => {
+    name = 4;
+    // console.log("useEffect inside user", name);
+  });
+  UseEffect(() => {
+    name = 5;
+    // console.log("useEffect inside user", name);
+  });
 
   name = 3;
   // console.log(name);
@@ -26,4 +34,4 @@ function User4() {
 function User5(asd) {
   return "asda";
 }
-export default User3;
+export default User;

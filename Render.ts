@@ -1,5 +1,6 @@
 import { EventTargetListener } from "./EventTarget";
 import { checkCaracter } from "./checkCaracter";
+import Parse from "./Parse";
 let id = 0;
 function DClass(f, element) {
   this.f = f;
@@ -25,7 +26,8 @@ function DOMRender() {
     let fNewConstr2 = new DClass(f, element);
     // console.log("===", parseFunction(f.toString()));
     const [params, body] = parseFunction(f.toString());
-    console.log({ params }, { body });
+    // console.log({ params }, { body });
+    Parse(body);
     // checkCaracter(f.toString());
     EventTargetListener.dispatchEvent({ type: "render" + fNewConstr2.id });
     EventTargetListener.dispatchEvent({ type: "didMount" + fNewConstr2.id });

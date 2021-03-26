@@ -50,7 +50,6 @@ export const checkCaracter2 = srt => {
   let identifyer = "";
   let currentChar = srt.charAt(0);
   let previousChar = "";
-  const regexp = /\)|\(|\{|\}|;/gi;
   let arrayReference = {
     tracking: [],
     params: 0,
@@ -58,8 +57,9 @@ export const checkCaracter2 = srt => {
   };
   let currentTracking = [];
 
-  const arrTracking = [];
 
+  const regexp = /\)|\(|\{|\}|;/gi;
+  const arrTracking = [];
   for (let i = 0; i < srt.length; i++) {
     currentChar = srt.charAt(i);
     if (currentChar.match(regexp)) {
