@@ -1,6 +1,6 @@
 import { EventTargetListener } from "./EventTarget";
 import { checkCaracter } from "./checkCaracter";
-import Parse from "./Parse";
+import Parse, { parseFunction } from "./Parse";
 let id = 0;
 function DClass(f, element) {
   this.f = f;
