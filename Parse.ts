@@ -51,16 +51,15 @@ const Parse = functionBody => {
         case functionBody.substring(i, i + 8) === "function":
           console.log("found function");
           const nextIndex = functionBody.indexOf("(", i);
+          let index = nextIndex + 1;
           let currentFunction = functionBody.substring(i, nextIndex + 1);
-          let index = i;
 
-          console.log(checkValidFunction(currentFunction));
-          // debugger;
-          // while (!checkValidFunction(currentFunction)) {
-          //   currentFunction += functionBody.charAt(index);
-          //   console.log(currentFunction);
-          //   debugger;
-          // }
+          debugger;
+          while (!checkValidFunction(currentFunction)) {
+            currentFunction += functionBody.charAt(index);
+            console.log(currentFunction);
+            debugger;
+          }
           break;
         case functionBody.substring(i, i + 9) === "UseEffect":
           console.log("found UseEffect");
