@@ -1,3 +1,5 @@
+import { checkValidFunction } from "./checkValidFunction";
+
 const oppositeArray = {
   ")": "(",
   "}": "{",
@@ -48,6 +50,17 @@ const Parse = functionBody => {
           break;
         case functionBody.substring(i, i + 8) === "function":
           console.log("found function");
+          const nextIndex = functionBody.indexOf("(", i);
+          let currentFunction = functionBody.substring(i, nextIndex + 1);
+          let index = i;
+
+          console.log(checkValidFunction(currentFunction));
+          // debugger;
+          // while (!checkValidFunction(currentFunction)) {
+          //   currentFunction += functionBody.charAt(index);
+          //   console.log(currentFunction);
+          //   debugger;
+          // }
           break;
         case functionBody.substring(i, i + 9) === "UseEffect":
           console.log("found UseEffect");
