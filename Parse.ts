@@ -36,40 +36,59 @@ const Parse = functionBody => {
     closed: 0
   };
   const regexp = /\)|\(|\{|\|}|c|f|u/gi;
-  const arrTracking = [];
+  const UseEffectTracking = [];
   let currentChar;
   let currentFunctionBody = "";
   let track = false;
+
+  let nextIndex;
+  let startIndex;
+  let currentIndex;
+  let currentFunction;
 
   for (let i = 0; i < functionBody.length; i++) {
     currentChar = functionBody.charAt(i);
     if (currentChar.match(regexp)) {
       switch (true) {
-        case functionBody.substring(i, i + 5) === "const":
-          console.log("found const");
-          break;
+        // case functionBody.substring(i, i + 5) === "const":
+        //   nextIndex = functionBody.indexOf("=>", i);
+        //   if (nextIndex) {
+        //     console.log("found const function ");
+        //   } else {
+        //   }
+        //   break;
         case functionBody.substring(i, i + 8) === "function":
           console.log("found function");
-          const nextIndex = functionBody.indexOf("(", i);
-          let startIndex = i;
-          let currentIndex = nextIndex + 1;
-          let currentFunction = functionBody.substring(
-            startIndex,
-            currentIndex
-          );
+          nextIndex = functionBody.indexOf("{", i);
+          startIndex = i;
+          currentIndex = nextIndex + 1;
+          currentFunction = functionBody.substring(startIndex, currentIndex);
 
-          debugger;
           while (!checkValidFunction(currentFunction)) {
             currentFunction = functionBody.substring(
               startIndex,
               currentIndex++
             );
-            console.log(currentFunction);
-            debugger;
           }
+          console.log(currentFunction, startIndex, currentIndex);
+          i = currentIndex++;
           break;
         case functionBody.substring(i, i + 9) === "UseEffect":
           console.log("found UseEffect");
+          nextIndex = functionBody.indexOf("(", i);
+          startIndex = i;
+          currentIndex = nextIndex + 1;
+          currentFunction = functionBody.substring(startIndex, currentIndex);
+
+          while (!checkValidFunction(currentFunction)) {
+            currentFunction = functionBody.substring(
+              startIndex,
+              currentIndex++
+            );
+          }
+          // console.log(currentFunction, startIndex, currentIndex);
+          UseEffectTracking.push([startIndex, currentIndex]);
+          i = currentIndex++;
           break;
         default:
       }

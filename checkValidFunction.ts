@@ -39,7 +39,6 @@ const checkSingleCaracter = (caracter, arrayReference) => {
 };
 
 export const checkValidFunction = srt => {
-  console.log(srt);
   const arr = srt.split("");
   const arrayReference = {
     tracking: [],
