@@ -39,13 +39,10 @@ const Parse = functionBody => {
   const UseEffectTracking = [];
   const FunctionTracking = [];
   let currentChar;
-  let currentFunctionBody = "";
-  let track = false;
 
   let nextIndex;
   let nextIndex2;
   let nextIndex3;
-  let nextIndex4;
   let startIndex;
   let currentIndex;
   let currentFunction;
@@ -139,6 +136,7 @@ const Parse = functionBody => {
       }
     }
   }
+  console.log({ UseEffectTracking }, { FunctionTracking });
 };
 
 const Parse2 = functionBody => {

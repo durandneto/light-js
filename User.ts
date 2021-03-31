@@ -16,6 +16,7 @@ const User = () => {
     name = 4;
     // console.log("useEffect inside user", name);
   });
+
   UseEffect(() => {
     name = 5;
     // console.log("useEffect inside user", name);
@@ -27,11 +28,15 @@ const User = () => {
 };
 
 const User2 = name => `durand ${name}`;
+
 const User3 = (name: string = "3", email: number) => `durand ${name}`;
+
 function User4() {
   return "asda";
 }
+
 function User5(asd) {
   return "asda";
 }
+
 export default User;
