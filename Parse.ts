@@ -61,13 +61,6 @@ const Parse = functionBody => {
           if (nextIndex) {
             nextIndex2 = functionBody.indexOf("{", i);
             nextIndex3 = functionBody.indexOf("`", i);
-            // console.log(
-            //   "found const function => ",
-            //   nextIndex,
-            //   nextIndex2,
-            //   nextIndex3,
-            //   i
-            // );
             if (nextIndex2 > nextIndex3) {
               startIndex = i;
               currentIndex = nextIndex3 + 1;
@@ -75,15 +68,17 @@ const Parse = functionBody => {
                 nextIndex3,
                 currentIndex
               );
-              debugger;
               while (!checkValidFunction(currentFunction)) {
-                debugger;
                 currentFunction = functionBody.substring(
                   nextIndex3,
                   currentIndex++
                 );
               }
-              console.log(currentFunction, startIndex, currentIndex);
+              // console.log(
+              //   functionBody.substring(startIndex, currentIndex),
+              //   startIndex,
+              //   currentIndex
+              // );
               FunctionTracking.push([startIndex, currentIndex]);
               i = currentIndex++;
             } else if (nextIndex2 < nextIndex3) {
