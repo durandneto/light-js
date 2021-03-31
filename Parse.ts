@@ -76,7 +76,9 @@ const Parse = functionBody => {
                 currentIndex
               );
               debugger;
-              while (!checkValidFunction(currentFunction)) {
+              let d = 0;
+              while (d < 50 || !checkValidFunction(currentFunction)) {
+                d++;
                 debugger;
                 currentFunction = functionBody.substring(
                   startIndex,
