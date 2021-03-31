@@ -69,19 +69,20 @@ const Parse = functionBody => {
             //   i
             // );
             if (nextIndex2 > nextIndex3) {
-              // startIndex = i;
-              // currentIndex = nextIndex3 + 1;
-              // currentFunction = functionBody.substring(
-              //   startIndex,
-              //   currentIndex
-              // );
-              // while (!checkValidFunction(currentFunction)) {
-              //   currentFunction = functionBody.substring(
-              //     startIndex,
-              //     currentIndex++
-              //   );
-              // }
-              // console.log(currentFunction, startIndex, currentIndex);
+              startIndex = i;
+              currentIndex = nextIndex3 + 1;
+              currentFunction = functionBody.substring(
+                startIndex,
+                currentIndex
+              );
+              while (!checkValidFunction(currentFunction)) {
+                debugger;
+                //   currentFunction = functionBody.substring(
+                //     startIndex,
+                //     currentIndex++
+                //   );
+              }
+              console.log(currentFunction, startIndex, currentIndex);
               // FunctionTracking.push([startIndex, currentIndex]);
               // i = currentIndex++;
             } else if (nextIndex2 < nextIndex3) {
