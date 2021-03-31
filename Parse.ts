@@ -72,13 +72,11 @@ const Parse = functionBody => {
               startIndex = i;
               currentIndex = nextIndex3 + 1;
               currentFunction = functionBody.substring(
-                nextIndex3,
+                nextIndex3 - 1,
                 currentIndex
               );
               debugger;
-              let d = 0;
-              while (d < 50 || !checkValidFunction(currentFunction)) {
-                d++;
+              while (!checkValidFunction(currentFunction)) {
                 debugger;
                 currentFunction = functionBody.substring(
                   startIndex,
