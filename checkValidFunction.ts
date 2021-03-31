@@ -1,7 +1,8 @@
 const oppositeArray = {
   ")": "(",
   "}": "{",
-  "]": "["
+  "]": "[",
+  "`": "`"
 };
 
 const checkSingleCaracter = (caracter, arrayReference) => {
@@ -57,7 +58,6 @@ const checkSingleCaracter = (caracter, arrayReference) => {
 };
 
 export const checkValidFunction = srt => {
-  console.log(srt);
   const arr = srt.split("");
   const arrayReference = {
     tracking: [],
@@ -66,6 +66,7 @@ export const checkValidFunction = srt => {
   };
   arr.map(str => checkSingleCaracter(str, arrayReference));
 
+  console.log(srt, arrayReference);
   return (
     arrayReference.open === arrayReference.closed &&
     arrayReference.tracking.length === 0
