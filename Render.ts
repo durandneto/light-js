@@ -23,12 +23,23 @@ function DClass(f, element) {
 }
 function DOMRender() {
   this.render = function(f, element) {
-    let fNewConstr2 = new DClass(f, element);
     // console.log("===", parseFunction(f.toString()));
     const [compParams, comBody, compFunctions, compUseEffect] = parseFunction(
       f.toString()
     );
-    console.log(compFunctions);
+    const newF = new Function(
+      compParams.toString(),
+      "return " + comBody.toString()
+    );
+    console.log(newF, comBody.toString());
+    // let fNewConstr2 = new DClass(newF, element);
+    let fNewConstr2 = new DClass(newF, element);
+    console.log("---------");
+    console.log("----params-----");
+    console.log(compParams.toString());
+    console.log("-----body----");
+    console.log(comBody.toString());
+    console.log("---------");
     // console.log({ params }, { body });
     // const [ComponentFunctions] = Parse(body);
     // checkCaracter(f.toString());

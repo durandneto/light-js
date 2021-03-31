@@ -30,7 +30,7 @@ const User = () => {
 
 const User2 = name => `durand ${name}`;
 
-const User3 = (name: string = "3", email: number) => `durand ${name}`;
+const User3 = (name: string = "34", email: number) => `durand ${name}`;
 
 function User4() {
   return "asda";
@@ -40,4 +40,4 @@ function User5(asd) {
   return "asda";
 }
 
-export default User;
+export default User3;
