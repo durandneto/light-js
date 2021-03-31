@@ -79,7 +79,7 @@ const Parse = functionBody => {
               while (!checkValidFunction(currentFunction)) {
                 debugger;
                 currentFunction = functionBody.substring(
-                  startIndex,
+                  nextIndex3,
                   currentIndex++
                 );
               }
