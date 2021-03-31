@@ -72,7 +72,7 @@ const Parse = functionBody => {
               startIndex = i;
               currentIndex = nextIndex3 + 1;
               currentFunction = functionBody.substring(
-                nextIndex3 - 1,
+                nextIndex3,
                 currentIndex
               );
               debugger;
