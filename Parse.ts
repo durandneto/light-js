@@ -70,11 +70,12 @@ const Parse = functionBody => {
             // );
             if (nextIndex2 > nextIndex3) {
               startIndex = i;
-              currentIndex = nextIndex3 + 1;
+              currentIndex = nextIndex3;
               currentFunction = functionBody.substring(
                 startIndex,
                 currentIndex
               );
+              debugger;
               while (!checkValidFunction(currentFunction)) {
                 debugger;
                 currentFunction = functionBody.substring(
