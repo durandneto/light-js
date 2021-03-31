@@ -11,8 +11,22 @@ const checkSingleCaracter = (caracter, arrayReference) => {
       arrayReference.open++;
       break;
     case "`":
-      arrayReference.tracking.push("`");
-      arrayReference.open++;
+      if (arrayReference.tracking.include("`")) {
+        arrayReference.closed++;
+        if (arrayReference.tracking.length) {
+          if (
+            arrayReference.tracking[arrayReference.tracking.length - 1] ===
+            oppositeArray[caracter]
+          ) {
+            arrayReference.closed--;
+            arrayReference.open--;
+            arrayReference.tracking.pop();
+          }
+        }
+      } else {
+        arrayReference.tracking.push("`");
+        arrayReference.open++;
+      }
       break;
     case "{":
       arrayReference.tracking.push("{");
@@ -24,7 +38,6 @@ const checkSingleCaracter = (caracter, arrayReference) => {
       break;
     case ")":
     case "}":
-    case "`":
     case "]":
       arrayReference.closed++;
       if (arrayReference.tracking.length) {

@@ -77,14 +77,14 @@ const Parse = functionBody => {
               );
               while (!checkValidFunction(currentFunction)) {
                 debugger;
-                //   currentFunction = functionBody.substring(
-                //     startIndex,
-                //     currentIndex++
-                //   );
+                currentFunction = functionBody.substring(
+                  startIndex,
+                  currentIndex++
+                );
               }
               console.log(currentFunction, startIndex, currentIndex);
-              // FunctionTracking.push([startIndex, currentIndex]);
-              // i = currentIndex++;
+              FunctionTracking.push([startIndex, currentIndex]);
+              i = currentIndex++;
             } else if (nextIndex2 < nextIndex3) {
               startIndex = i;
               currentIndex = nextIndex2 + 1;
