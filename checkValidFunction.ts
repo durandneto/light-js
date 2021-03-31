@@ -11,7 +11,7 @@ const checkSingleCaracter = (caracter, arrayReference) => {
       arrayReference.open++;
       break;
     case "`":
-      if (arrayReference.tracking.indexOf("`") !== -1) {
+      if (arrayReference.tracking.indexOf("`") !== -1) { 
         arrayReference.closed++;
         if (arrayReference.tracking.length) {
           if (
