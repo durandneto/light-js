@@ -29,13 +29,13 @@ export function parseFunction(str) {
 }
 
 const Parse = functionBody => {
-  console.log(functionBody);
+  // console.log(functionBody);
   const arrayReference = {
     tracking: [],
     open: 0,
     closed: 0
   };
-  const regexp = /\)|\(|\{|\|}|c|f|u/gi;
+  const regexp = /\)|\(|\{|\|}|c|f|U/gi;
   const UseEffectTracking = [];
   const FunctionTracking = [];
   let currentChar;
@@ -46,9 +46,11 @@ const Parse = functionBody => {
   let startIndex;
   let currentIndex;
   let currentFunction;
+  let newFunctionBody = "";
 
   for (let i = 0; i < functionBody.length; i++) {
     currentChar = functionBody.charAt(i);
+
     if (currentChar.match(regexp)) {
       switch (true) {
         case functionBody.substring(i, i + 5) === "const":
@@ -115,6 +117,9 @@ const Parse = functionBody => {
           FunctionTracking.push([startIndex, currentIndex]);
           i = currentIndex++;
           break;
+        case functionBody.substring(i, i + 10) === "useEffect_":
+          i = functionBody.indexOf(".", i);
+          break;
         case functionBody.substring(i, i + 9) === "UseEffect":
           // console.log("found UseEffect");
           nextIndex = functionBody.indexOf("(", i);
@@ -135,12 +140,15 @@ const Parse = functionBody => {
         default:
       }
     }
+    newFunctionBody += functionBody.charAt(i);
   }
-  console.log({ UseEffectTracking }, { FunctionTracking });
+  // console.log({ UseEffectTracking }, { FunctionTracking });
+  console.log(newFunctionBody);
+  return [newFunctionBody, UseEffectTracking, FunctionTracking];
 };
 
 const Parse2 = functionBody => {
-  console.log(functionBody);
+  // console.log(functionBody);
   const arrayReference = {
     tracking: [],
     open: 0,
@@ -162,7 +170,7 @@ const Parse2 = functionBody => {
           if (arrayReference.open === 1) {
             track = true;
           }
-          console.log("open", i, arrayReference.open);
+          // console.log("open", i, arrayReference.open);
           break;
         case "{":
           arrayReference.tracking.push("{");
@@ -203,7 +211,7 @@ const Parse2 = functionBody => {
     }
   }
 
-  console.log(arrTracking);
+  // console.log(arrTracking);
 };
 
 export default Parse;

@@ -25,9 +25,12 @@ function DOMRender() {
   this.render = function(f, element) {
     let fNewConstr2 = new DClass(f, element);
     // console.log("===", parseFunction(f.toString()));
-    const [params, body] = parseFunction(f.toString());
+    const [compParams, comBody, compFunctions, compUseEffect] = parseFunction(
+      f.toString()
+    );
+    console.log(compFunctions);
     // console.log({ params }, { body });
-    Parse(body);
+    // const [ComponentFunctions] = Parse(body);
     // checkCaracter(f.toString());
     EventTargetListener.dispatchEvent({ type: "render" + fNewConstr2.id });
     EventTargetListener.dispatchEvent({ type: "didMount" + fNewConstr2.id });
@@ -52,7 +55,12 @@ function parseFunction(str) {
       str.indexOf(")", str.indexOf("("))
     );
   }
-
-  return [fn_param.replace(/\(|\)/g, "").trim(), fn_body];
+  const [comBody, compFunctions, compUseEffect] = Parse(fn_body);
+  return [
+    fn_param.replace(/\(|\)/g, "").trim(),
+    comBody,
+    compFunctions,
+    compUseEffect
+  ];
 }
 export default new DOMRender();
