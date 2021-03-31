@@ -70,9 +70,9 @@ const Parse = functionBody => {
             // );
             if (nextIndex2 > nextIndex3) {
               startIndex = i;
-              currentIndex = nextIndex3;
+              currentIndex = nextIndex3 + 1;
               currentFunction = functionBody.substring(
-                startIndex,
+                nextIndex3,
                 currentIndex
               );
               debugger;
