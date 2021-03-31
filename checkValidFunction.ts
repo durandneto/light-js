@@ -14,7 +14,7 @@ const checkSingleCaracter = (caracter, arrayReference) => {
       if (arrayReference.tracking.indexOf("`") !== -1) {
         arrayReference.closed++;
         if (arrayReference.tracking.length) {
-          if ( 
+          if (
             arrayReference.tracking[arrayReference.tracking.length - 1] ===
             oppositeArray[caracter]
           ) {
@@ -57,6 +57,7 @@ const checkSingleCaracter = (caracter, arrayReference) => {
 };
 
 export const checkValidFunction = srt => {
+  console.log(srt);
   const arr = srt.split("");
   const arrayReference = {
     tracking: [],
