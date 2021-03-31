@@ -37,11 +37,15 @@ const Parse = functionBody => {
   };
   const regexp = /\)|\(|\{|\|}|c|f|u/gi;
   const UseEffectTracking = [];
+  const FunctionTracking = [];
   let currentChar;
   let currentFunctionBody = "";
   let track = false;
 
   let nextIndex;
+  let nextIndex2;
+  let nextIndex3;
+  let nextIndex4;
   let startIndex;
   let currentIndex;
   let currentFunction;
@@ -50,15 +54,59 @@ const Parse = functionBody => {
     currentChar = functionBody.charAt(i);
     if (currentChar.match(regexp)) {
       switch (true) {
-        // case functionBody.substring(i, i + 5) === "const":
-        //   nextIndex = functionBody.indexOf("=>", i);
-        //   if (nextIndex) {
-        //     console.log("found const function ");
-        //   } else {
-        //   }
-        //   break;
+        case functionBody.substring(i, i + 5) === "const":
+          nextIndex = functionBody.indexOf("=>", i);
+          startIndex = i;
+          currentIndex = nextIndex + 1;
+          if (nextIndex) {
+            nextIndex2 = functionBody.indexOf("{", i);
+            nextIndex3 = functionBody.indexOf("`", i);
+            // console.log(
+            //   "found const function => ",
+            //   nextIndex,
+            //   nextIndex2,
+            //   nextIndex3,
+            //   i
+            // );
+            if (nextIndex2 > nextIndex3) {
+              startIndex = i;
+              currentIndex = nextIndex3 + 1;
+              currentFunction = functionBody.substring(
+                startIndex,
+                currentIndex
+              );
+
+              // while (!checkValidFunction(currentFunction)) {
+              //   currentFunction = functionBody.substring(
+              //     startIndex,
+              //     currentIndex++
+              //   );
+              // }
+              console.log(currentFunction, startIndex, currentIndex);
+              FunctionTracking.push([startIndex, currentIndex]);
+              i = currentIndex++;
+            } else if (nextIndex2 < nextIndex3) {
+              startIndex = i;
+              currentIndex = nextIndex2 + 1;
+              currentFunction = functionBody.substring(
+                startIndex,
+                currentIndex
+              );
+
+              while (!checkValidFunction(currentFunction)) {
+                currentFunction = functionBody.substring(
+                  startIndex,
+                  currentIndex++
+                );
+              }
+              // console.log(currentFunction, startIndex, currentIndex);
+              FunctionTracking.push([startIndex, currentIndex]);
+              i = currentIndex++;
+            }
+          }
+          break;
         case functionBody.substring(i, i + 8) === "function":
-          console.log("found function");
+          // console.log("found function");
           nextIndex = functionBody.indexOf("{", i);
           startIndex = i;
           currentIndex = nextIndex + 1;
@@ -70,11 +118,12 @@ const Parse = functionBody => {
               currentIndex++
             );
           }
-          console.log(currentFunction, startIndex, currentIndex);
+          // console.log(currentFunction, startIndex, currentIndex);
+          FunctionTracking.push([startIndex, currentIndex]);
           i = currentIndex++;
           break;
         case functionBody.substring(i, i + 9) === "UseEffect":
-          console.log("found UseEffect");
+          // console.log("found UseEffect");
           nextIndex = functionBody.indexOf("(", i);
           startIndex = i;
           currentIndex = nextIndex + 1;

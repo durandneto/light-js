@@ -10,6 +10,10 @@ const checkSingleCaracter = (caracter, arrayReference) => {
       arrayReference.tracking.push("(");
       arrayReference.open++;
       break;
+    case "`":
+      arrayReference.tracking.push("`");
+      arrayReference.open++;
+      break;
     case "{":
       arrayReference.tracking.push("{");
       arrayReference.open++;
@@ -20,6 +24,7 @@ const checkSingleCaracter = (caracter, arrayReference) => {
       break;
     case ")":
     case "}":
+    case "`":
     case "]":
       arrayReference.closed++;
       if (arrayReference.tracking.length) {
