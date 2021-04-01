@@ -25,7 +25,13 @@ const User = () => {
   name = 3;
   // console.log(name);
   console.log("init before render");
-  return `durand ${name}`;
+  return `
+    durand ${name}
+    <p onClick={() => {
+      console.log("click 1")
+    }}>Click 1</p>
+    <p onClick={Click}>Click 2</p>
+  `;
 };
 
 const User2 = name => `durand ${name}`;
