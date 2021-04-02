@@ -27,10 +27,7 @@ function DOMRender() {
     const [compParams, comBody, compFunctions, compUseEffect] = parseFunction(
       f.toString()
     );
-    const newF = new Function(
-      compParams.toString(),
-      "return " + comBody.toString()
-    );
+    const newF = new Function(compParams.toString(), comBody.toString());
     console.log(newF, comBody.toString());
     // let fNewConstr2 = new DClass(newF, element);
     let fNewConstr2 = new DClass(newF, element);

@@ -27,10 +27,7 @@ const User = () => {
   console.log("init before render");
   return `
     durand ${name}
-    <p onClick={() => {
-      console.log("click 1")
-    }}>Click 1</p>
-    <p onClick={Click}>Click 2</p>
+    <button onClick={Click}>Click 2</button>
   `;
 };
 
@@ -46,4 +43,4 @@ function User5(asd) {
   return "asda";
 }
 
-export default User3;
+export default User;

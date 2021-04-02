@@ -35,7 +35,7 @@ const Parse = functionBody => {
     open: 0,
     closed: 0
   };
-  const regexp = /\)|\(|\{|\|}|c|f|U/gi;
+  const regexp = /\)|\(|\{|\|}|c|f|u/gi;
   const UseEffectTracking = [];
   const FunctionTracking = [];
   let currentChar;
@@ -118,7 +118,12 @@ const Parse = functionBody => {
           i = currentIndex++;
           break;
         case functionBody.substring(i, i + 10) === "useEffect_":
-          i = functionBody.indexOf(".", i);
+          i = functionBody.indexOf("U", i + 10);
+          console.log("-------");
+          console.log("-------");
+          console.log(i);
+          functionBody.substring(i, i + 9);
+          console.log("-------");
           break;
         case functionBody.substring(i, i + 9) === "UseEffect":
           // console.log("found UseEffect");
