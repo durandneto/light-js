@@ -16,10 +16,14 @@ EventTarget.prototype.removeEventListener = function(type, callback) {
   }
   var stack = this.listeners[type];
   for (var i = 0, l = stack.length; i < l; i++) {
-    if (stack[i] === callback) {
-      stack.splice(i, 1);
-      return;
-    }
+    (n => {
+      setTimeout(() => {
+        if (stack[n] === callback) {
+          stack.splice(n, 1);
+          return;
+        }
+      }, 0);
+    })(i);
   }
 };
 
@@ -31,7 +35,11 @@ EventTarget.prototype.dispatchEvent = function(event) {
   var stack = this.listeners[event.type].slice();
 
   for (var i = 0, l = stack.length; i < l; i++) {
-    stack[i].call(this, event);
+    (n => {
+      setTimeout(() => {
+        stack[n].call(this, event);
+      }, 0);
+    })(i);
   }
   return !event.defaultPrevented;
 };

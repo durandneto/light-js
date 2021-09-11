@@ -17,3 +17,4 @@ EventTargetListener.addEventListener('render', () => {
 });
 
 EventTargetListener.dispatchEvent({ type: 'render' });
+ 
