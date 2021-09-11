@@ -1,3 +1,5 @@
+import { Queue } from './Queue';
+
 export const EventTarget = function() {
   this.listeners = {};
 };
@@ -6,10 +8,9 @@ EventTarget.prototype.listeners = null;
 EventTarget.prototype.addEventListener = function(type, callback) {
   Promise.resolve(true).then(() => {
     if (!(type in this.listeners)) {
-      this.listeners[type] = [];
+      this.listeners[type] = new Queue();
     }
-    console.log('add');
-    this.listeners[type].push(callback);
+    this.listeners[type].enqueue(callback);
   });
 };
 
@@ -30,16 +31,13 @@ EventTarget.prototype.removeEventListener = function(type, callback) {
 
 EventTarget.prototype.dispatchEvent = function(event) {
   setTimeout(() => {
-    console.log('dispatch', this.listeners, event);
     if (!(event.type in this.listeners)) {
       return true;
     }
 
-    const stack = this.listeners[event.type].slice();
-    console.log('dispatch', { stack });
-
-    for (let i = 0, l = stack.length; i < l; i++) {
-      stack[i].call(this, event);
+    const q = this.listeners[event.type];
+    while (!q.isEmpty()) {
+      q.dequeue()();
     }
   }, 0);
   return !event.defaultPrevented;

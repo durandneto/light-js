@@ -1,14 +1,26 @@
-import { EventTargetListener } from './EventTarget';
-
-function test(value) {
-  console.log({ value }, { date: new Date() });
+export function Queue() {
+  this.elements = [];
 }
 
-EventTargetListener.addEventListener('render', () => {
-  test(12);
-});
-EventTargetListener.addEventListener('render', () => {
-  test(25);
-});
+Queue.prototype.enqueue = function(e) {
+  this.elements.push(e);
+};
 
-EventTargetListener.dispatchEvent({ type: 'render' });
+// remove an element from the front of the queue
+Queue.prototype.dequeue = function() {
+  return this.elements.shift();
+};
+
+// get the element at the front of the queue
+Queue.prototype.peek = function() {
+  return !this.isEmpty() ? this.elements[0] : undefined;
+};
+
+Queue.prototype.length = function() {
+  return this.elements.length;
+};
+
+// check if the queue is empty
+Queue.prototype.isEmpty = function() {
+  return this.elements.length == 0;
+};
