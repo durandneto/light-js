@@ -1,8 +1,3 @@
-// import DOMRender from './Render';
-// import User from './User';
-
-// DOMRender.render(User, document.getElementById('app'));
-
 import { EventTargetListener } from './EventTarget';
 
 function test(value) {
