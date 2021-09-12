@@ -31,6 +31,7 @@ EventTarget.prototype.removeEventListener = function(type, callback) {
 
 EventTarget.prototype.dispatchEvent = function(event) {
   setTimeout(() => {
+    console.log(this.listeners);
     if (!(event.type in this.listeners)) {
       return true;
     }
