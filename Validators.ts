@@ -9,3 +9,10 @@ export class MyError2 extends Error {
     super(message);
   }
 }
+
+export function MyError3() {
+  const err = Error.apply(this, arguments);
+  this.name = 'MyError';
+  this.message = err.message;
+  this.stack = err.stack;
+}
