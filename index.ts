@@ -18,23 +18,22 @@ import { MyError, MyError2, MyError3 } from './Validators';
 function test(value) {
   try {
     if (value === 12) {
-      throw new MyError(' value equals to 12');
+      // throw new MyError(' value equals to 12');
       // throw new MyError2(' value equals to 12');
-      // throw new MyError3(' value equals to 12');
+      throw new MyError3(' value equals to 12');
     }
   } catch (err) {
     if (err instanceof MyError) {
-      console.log('1 ===>>>', err.stack);
+      console.log('1 ===>>>', err.stack, { date: new Date() });
     }
 
     if (err instanceof MyError2) {
-      console.log('2 ===>>>', err.message);
+      console.log('2 ===>>>', err.message, { date: new Date() });
     }
     if (err instanceof MyError3) {
-      console.log('3 ===>>>', err.message);
+      console.log('3 ===>>>', err.message, { date: new Date() });
     }
   }
-  console.log({ value }, { date: new Date() });
 }
 
 EventTargetListener.dispatchEvent({ type: 'render' });
