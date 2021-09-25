@@ -17,15 +17,15 @@ import { MyError, MyError2 } from './Validators';
 function test(value) {
   try {
     if (value === 12) {
-      throw new MyError2('value equals to 12');
+      throw new MyError2(' value equals to 12');
     }
   } catch (err) {
     if (err instanceof MyError) {
-      console.log('1');
+      console.log('1 ===>>>', err.stack);
     }
 
     if (err instanceof MyError2) {
-      console.log('2', err.message);
+      console.log('2 ===>>>', err.message);
     }
   }
   console.log({ value }, { date: new Date() });
